@@ -1,9 +1,10 @@
 //index.js
 
+window.SquidStuff = {};
+
 var relativePathToLogFile = "squid_stuff/squid_access.log";
 
-function readLogFile(file)
-{
+function readLogFile(file) {
     var rawFile = new XMLHttpRequest();
     rawFile.open("GET", file, false);
     rawFile.onreadystatechange = function ()
@@ -12,8 +13,7 @@ function readLogFile(file)
         {
             if(rawFile.status === 200 || rawFile.status == 0)
             {
-                var allText = rawFile.responseText;
-                alert(allText);
+                SquidStuff.allRawLogText = rawFile.responseText;
             }
         }
     }
@@ -22,4 +22,5 @@ function readLogFile(file)
 
 window.onload = function() {
 	readLogFile(relativePathToLogFile);
+	alert(SquidStuff.allRawLogText);
 };
