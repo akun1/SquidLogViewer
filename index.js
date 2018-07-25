@@ -3,6 +3,7 @@
 window.SquidStuff = {};
 
 var relativePathToLogFile = "squid_stuff/squid_access.log";
+var IPWhiteList = ["128.107.241.168","128.107.241.167"];
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -20,7 +21,7 @@ function timeConverter(UNIX_timestamp){
 function populateTable() {
 	//time elapsed remotehost code/status bytes method URL rfc931 peerstatus/peerhost type
 	var tableHTMLUpperHalf = `<div class="table-responsive">
-						<table class="table table-striped">
+						<table class="table table-hover">
 						  <thead>
 						    <tr>
 						      <th scope="col">#</th>
@@ -54,6 +55,14 @@ function populateTable() {
 	    	$.each(eachColInLine, function(key, value) {
 	    		if(key == 0) {
 	    			tableContent += `<td>`+ timeConverter(value) +`</td>`;
+	    		}
+	    		else if(key == 2) {
+	    			if(IPWhiteList.includes(value)) {
+	    				tableContent += `<td style="background-color: lightgreen;">`+ value +`</td>`;	
+	    			}
+	    			else {
+	    				tableContent += `<td style="background-color: red;">`+ value +`</td>`;	
+	    			}
 	    		}
 	    		else {
 	    			tableContent += `<td>`+ value +`</td>`;
