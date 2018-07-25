@@ -11,7 +11,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<nav class="navbar navbar-default" id=navibar>
+		<nav class="navbar navbar-default navbar-fixed-top" id=navibar>
 			  <div class="container-fluid">
 			    <div class="navbar-header">
 			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -25,14 +25,15 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav navbar-right">
-			        <li onClick="window.location.href=window.location.href" ><a href="#">Refresh</a></li>
+			        <li onClick="window.location.href=window.location.href" ><a href="">Refresh</a></li>
+			        <li onClick="window.scrollTo(0,document.body.scrollHeight)"><a href="">Go to Top</a></li>
 			      </ul>
 			    </div>
 			  </div>
 			</nav>
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-12" id="tablediv">
+				<div class="col-sm-12" id="tablediv" style="margin: 7rem;">
 				</div>
 			</div>
 		</div>

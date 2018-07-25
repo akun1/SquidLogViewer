@@ -4,6 +4,19 @@ window.SquidStuff = {};
 
 var relativePathToLogFile = "squid_stuff/squid_access.log";
 
+function timeConverter(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+  return time;
+}
+
 function populateTable() {
 	//time elapsed remotehost code/status bytes method URL rfc931 peerstatus/peerhost type
 	var tableHTMLUpperHalf = `<div class="table-responsive">
@@ -31,7 +44,7 @@ function populateTable() {
 
     $.get(relativePathToLogFile, function( data ) {
 
-    	SquidStuff.allRawLogTextLineByLine = data.split('\n');
+    	SquidStuff.allRawLogTextLineByLine = data.split('\n').reverse();
 
 	    $.each(SquidStuff.allRawLogTextLineByLine, function(key,value) {
 
@@ -39,7 +52,12 @@ function populateTable() {
 
 	    	var eachColInLine = value.replace(/\s+/g,' ').trim().split(' ');
 	    	$.each(eachColInLine, function(key, value) {
-	    		tableContent += `<td>`+ value +`</td>`;
+	    		if(key == 0) {
+	    			tableContent += `<td>`+ timeConverter(value) +`</td>`;
+	    		}
+	    		else {
+	    			tableContent += `<td>`+ value +`</td>`;
+	    		}
 	    	});
 
 	    	tableContent += `</tr>`;
