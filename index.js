@@ -4,21 +4,6 @@ window.SquidStuff = {};
 
 var relativePathToLogFile = "squid_stuff/squid_access.log";
 
-/*function populateTable() {
-
-    var tableContent = '';
-
-    $.get(relativePathToLogFile, function( data ) {
-    	SquidStuff.allRawLogTextLineByLine = data.split('\n');
-	    $.each(SquidStuff.allRawLogTextLineByLine,function(key,value){
-	        tableContent += '<tr>';
-	        tableContent += '<td>' + value + '</td>';
-	        tableContent += '</tr>';
-	    });
-        $('#tabledive').html(tableContent);
-    });
-};*/
-
 function populateTable() {
 	//time elapsed remotehost code/status bytes method URL rfc931 peerstatus/peerhost type
 	var tableHTMLUpperHalf = `<div class="table-responsive">
@@ -51,16 +36,13 @@ function populateTable() {
 	    $.each(SquidStuff.allRawLogTextLineByLine, function(key,value) {
 
 	        tableContent += `<tr><th scope="row">`+ key +`</th>`;
-	       /*if(key < 10) {
-	    			alert(value.replace(/\s+/g,' ').trim());
-	    		}*/
 
 	    	var eachColInLine = value.replace(/\s+/g,' ').trim().split(' ');
 	    	$.each(eachColInLine, function(key, value) {
-	    		tableContent += `<td>`+ value +`</td>;`
+	    		tableContent += `<td>`+ value +`</td>`;
 	    	});
 
-	    	tableContent += `</tr>`
+	    	tableContent += `</tr>`;
 
 	    });
 
