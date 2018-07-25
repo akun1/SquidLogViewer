@@ -4,23 +4,25 @@ window.SquidStuff = {};
 
 var relativePathToLogFile = "squid_stuff/squid_access.log";
 
-function readLogFile(file) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                SquidStuff.allRawLogText = rawFile.responseText;
-            }
-        }
-    }
-    rawFile.send(null);
-}
+function populateTable() {
+
+    var tableContent = '';
+
+    $.get( relativePathToLogFile, function( data ) {
+
+      //this will split the string into array line by line
+      SquidStuff.allRawLogTextLineByLine = data.split('\n');
+        //here we're itraing the array which you've created and printing the values
+        $.each(SquidStuff.allRawLogTextLineByLine , function(key,value){
+            tableContent += '<tr>';
+            tableContent += '<td>' + value + '</td>';
+            tableContent += '</tr>';
+        });
+
+        $('#tablediv').html(tableContent);
+    });
+};
 
 window.onload = function() {
-	readLogFile(relativePathToLogFile);
-	alert(SquidStuff.allRawLogText);
+	populateTable();
 };
