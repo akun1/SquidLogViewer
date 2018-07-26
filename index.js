@@ -21,7 +21,7 @@ function timeConverter(UNIX_timestamp){
 
 function populateInfoBar() {
 	$('#IPInfo').append("Unique & Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
-	$('#LogInfo').append("Total Logs: <span class='badge badge-info'>" + getTotalNumOfLogs() + "</span>");
+	$('#LogInfo').append("Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span>");
 }
 
 function populateTable() {
@@ -69,7 +69,7 @@ function populateTable() {
 				}
 
 	    		if(key == 0) {
-	    			tableContent += `<td>`+ value +`<span class="badge badge-secondary">`+ timeConverter(value) +`</span></td>`;
+	    			tableContent += `<td>`+ value +` <span class="badge badge-secondary">`+ timeConverter(value) +`</span></td>`;
 	    		}
 	    		else if(key == 2) {
 	    			if(IPWhiteList.includes(value)) {
@@ -85,11 +85,20 @@ function populateTable() {
 	    	});
 	    	tableContent += `</tr>`;
 	    });
+
         $('#tablediv').html(tableHTMLUpperHalf+tableContent+tableHTMLBottomHalf);
 	    populateInfoBar();
+	    deleterow("logtable");
 	    $('#logtable').DataTable();
     });
 };
+
+function deleterow(tableID) {
+    var table = document.getElementById(tableID);
+    var rowCount = table.rows.length;
+
+    table.deleteRow(rowCount -1);
+}
 
 function getNotWhitelistedIPs(ips) {
 	var notWhitelistedIPs = [];
