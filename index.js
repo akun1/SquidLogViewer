@@ -20,7 +20,8 @@ function timeConverter(UNIX_timestamp){
 }
 
 function populateInfoBar() {
-	$('#IPInfo').append("Unique IP's: " + getUniqueIPs().length);
+	$('#IPInfo').append("Unique & Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
+	$('#LogInfo').append("Total Logs: <span class='badge badge-info'>" + getTotalNumOfLogs() + "</span>");
 }
 
 function populateTable() {
@@ -89,8 +90,21 @@ function populateTable() {
     });
 };
 
+function getNotWhitelistedIPs(ips) {
+	var notWhitelistedIPs = [];
+	for (let ip of ips) {
+		if(!(IPWhiteList.includes(ip))) {
+			notWhitelistedIPs.push(ip);
+		}
+	}
+	return notWhitelistedIPs;
+}
+
 function getUniqueIPs() {
 	return [...new Set(SquidStuff.TableOfLogs[2])];
+}
+function getTotalNumOfLogs() {
+	return SquidStuff.TableOfLogs[0].length;
 }
 
 window.onload = function() {
