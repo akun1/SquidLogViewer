@@ -21,7 +21,7 @@ function timeConverter(UNIX_timestamp){
 function populateTable() {
 	//time elapsed remotehost code/status bytes method URL rfc931 peerstatus/peerhost type
 	var tableHTMLUpperHalf = `<div class="table-responsive">
-						<table class="table table-hover">
+						<table class="table table-hover table-fixed">
 						  <thead>
 						    <tr>
 						      <th scope="col">#</th>
@@ -58,10 +58,10 @@ function populateTable() {
 	    		}
 	    		else if(key == 2) {
 	    			if(IPWhiteList.includes(value)) {
-	    				tableContent += `<td style="background-color: lightgreen;">`+ value +`</td>`;	
+	    				tableContent += `<td>`+ value +`<span class="badge badge-success">Whitelisted</span></td>`;	
 	    			}
 	    			else {
-	    				tableContent += `<td style="background-color: red;">`+ value +`</td>`;	
+	    				tableContent += `<td>`+ value +`<span class="badge badge-danger">Unknown</span></td>`;	
 	    			}
 	    		}
 	    		else {

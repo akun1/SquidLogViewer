@@ -5,6 +5,14 @@ body, html {
 	background-color: rgba(0, 0, 0, 0.01)
 }
 
+.badge-danger {
+	background-color: red;
+}
+
+.badge-success {
+	background-color: green;
+}
+
 thead {
 	background-color: rgba(0, 0, 0, 0.2);
 }
@@ -33,9 +41,7 @@ thead {
 	    float: left;
 	    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 	}
-
 }
 
 @media (min-width: 576px) {
-
 }
