@@ -27,7 +27,7 @@ function populateInfoBar() {
 function populateTable() {
 	//time elapsed remotehost code/status bytes method URL rfc931 peerstatus/peerhost type
 	var tableHTMLUpperHalf = `<div class="table-responsive">
-						<table class="table table-hover table-fixed" id="logtable">
+						<table class="table table-hover" id="logtable">
 						  <thead>
 						    <tr>
 						      <th scope="col">#</th>
