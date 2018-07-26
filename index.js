@@ -1,6 +1,7 @@
 //index.js
 
 window.SquidStuff = {};
+SquidStuff.TableOfLogs = [];
 
 var relativePathToLogFile = "squid_stuff/squid_access.log";
 var IPWhiteList = ["128.107.241.168","128.107.241.167"];
@@ -16,6 +17,10 @@ function timeConverter(UNIX_timestamp){
   var sec = a.getSeconds();
   var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
   return time;
+}
+
+function populateInfoBar() {
+	$('#IPInfo').append("Unique IP's: " + getUniqueIPs().length);
 }
 
 function populateTable() {
@@ -52,7 +57,16 @@ function populateTable() {
 	        tableContent += `<tr><th scope="row">`+ key +`</th>`;
 
 	    	var eachColInLine = value.replace(/\s+/g,' ').trim().split(' ');
+
 	    	$.each(eachColInLine, function(key, value) {
+
+	    		if(typeof SquidStuff.TableOfLogs[key] === 'undefined') {
+				    SquidStuff.TableOfLogs.push([value]);
+				}
+				else {
+				    SquidStuff.TableOfLogs[key].push(value);
+				}
+
 	    		if(key == 0) {
 	    			tableContent += `<td>`+ timeConverter(value) +`</td>`;
 	    		}
@@ -68,14 +82,16 @@ function populateTable() {
 	    			tableContent += `<td>`+ value +`</td>`;
 	    		}
 	    	});
-
 	    	tableContent += `</tr>`;
-
 	    });
-
         $('#tablediv').html(tableHTMLUpperHalf+tableContent+tableHTMLBottomHalf);
+	    populateInfoBar();
     });
 };
+
+function getUniqueIPs() {
+	return [...new Set(SquidStuff.TableOfLogs[2])];
+}
 
 window.onload = function() {
 	populateTable();
