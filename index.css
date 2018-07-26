@@ -84,5 +84,10 @@ thead {
   		align-items: center;
   		margin-left: auto;
   		margin-right: auto;
+  		font-size: 9px;
+	}
+
+	.badge {
+		font-size: 9px;
 	}
 }
