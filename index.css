@@ -1,1 +1,62 @@
 /*index.css*/
+
+body, html {
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.01)
+}
+
+.table-fixed {
+  width: 100%;
+  tbody{
+    height:200px;
+    overflow-y:auto;
+    width: 100%;
+    }
+  thead,tbody,tr,td,th{
+    display:block;
+  }
+  tbody{
+    td{
+      float:left;
+    }
+  }
+  thead {
+    tr{
+      th{
+        float:left;
+       background-color: #f39c12;
+       border-color:#e67e22;
+      }
+    }
+  }
+}
+
+thead {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.table-responsive {
+	height: 85vh;
+	width: 97.5vw;
+	overflow-y: scroll;
+    border-radius: 5px;
+    margin: 0px auto;
+    float: left;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+
+
+@media (max-width: 576px) {
+	.table-responsive {
+		height: 85vh;
+		width: 92.5vw;
+		overflow-y: scroll;
+	    border-radius: 5px;
+	    margin: auto;
+	    float: left;
+	    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+	}
+}
+
