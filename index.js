@@ -27,7 +27,7 @@ function populateInfoBar() {
 function populateTable() {
 	//time elapsed remotehost code/status bytes method URL rfc931 peerstatus/peerhost type
 	var tableHTMLUpperHalf = `<div class="table-responsive">
-						<table class="table table-hover table-fixed">
+						<table class="table table-hover table-fixed" id="logtable">
 						  <thead>
 						    <tr>
 						      <th scope="col">#</th>
@@ -109,4 +109,7 @@ function getTotalNumOfLogs() {
 
 window.onload = function() {
 	populateTable();
+	$(document).ready(function() {
+    $('#logtable').DataTable();
+} );
 };
