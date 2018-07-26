@@ -1,14 +1,39 @@
 /*index.css*/
 
+* {
+	border: none;
+	text-decoration: none;
+	outline: none;
+}
+
 body, html {
 	overflow: hidden;
 	background-color: rgba(0, 0, 0, 0.01)
 }
 
+input {
+	border-radius: 5px;
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+}
+
+.paginate_button {
+	border-radius: 50%;
+	border: none;
+}
+
+.paginate_button:hover {
+	color: red;
+}
+
+
 .navbar {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
     background-color: white;
     border: none;
+}
+
+.badge-secondary {
+	background-color: teal;
 }
 
 .badge-danger {

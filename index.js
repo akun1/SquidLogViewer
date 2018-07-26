@@ -51,11 +51,11 @@ function populateTable() {
 
     $.get(relativePathToLogFile, function( data ) {
 
-    	SquidStuff.allRawLogTextLineByLine = data.split('\n').reverse();
+    	SquidStuff.allRawLogTextLineByLine = data.split('\n');
 
 	    $.each(SquidStuff.allRawLogTextLineByLine, function(key,value) {
 
-	        tableContent += `<tr><th scope="row">`+ key +`</th>`;
+	        tableContent += `<tr><th scope="row">`+ Number(parseInt(key, 10)+1) +`</th>`;
 
 	    	var eachColInLine = value.replace(/\s+/g,' ').trim().split(' ');
 
@@ -69,7 +69,7 @@ function populateTable() {
 				}
 
 	    		if(key == 0) {
-	    			tableContent += `<td>`+ timeConverter(value) +`</td>`;
+	    			tableContent += `<td>`+ value +`<span class="badge badge-secondary">`+ timeConverter(value) +`</span></td>`;
 	    		}
 	    		else if(key == 2) {
 	    			if(IPWhiteList.includes(value)) {
@@ -87,6 +87,7 @@ function populateTable() {
 	    });
         $('#tablediv').html(tableHTMLUpperHalf+tableContent+tableHTMLBottomHalf);
 	    populateInfoBar();
+	    $('#logtable').DataTable();
     });
 };
 
@@ -109,7 +110,4 @@ function getTotalNumOfLogs() {
 
 window.onload = function() {
 	populateTable();
-	$(document).ready(function() {
-    $('#logtable').DataTable();
-} );
 };
