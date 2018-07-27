@@ -4,7 +4,7 @@ window.SquidStuff = {};
 SquidStuff.TableOfLogs = [];
 
 var relativePathToLogFile = "squid_stuff/squid_access.log";
-var IPWhiteList = ["128.107.241.168","128.107.241.167"];
+var IPWhiteList = ["128.107.241.168","128.107.241.167","47.187.198.151"];
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -51,11 +51,11 @@ function populateTable() {
 
     $.get(relativePathToLogFile, function( data ) {
 
-    	SquidStuff.allRawLogTextLineByLine = data.split('\n');
+    	SquidStuff.allRawLogTextLineByLine = data.split('\n').reverse();
 
 	    $.each(SquidStuff.allRawLogTextLineByLine, function(key,value) {
 
-	        tableContent += `<tr><th scope="row">`+ Number(parseInt(key, 10)+1) +`</th>`;
+	        tableContent += `<tr><th scope="row">`+ key +`</th>`;
 
 	    	var eachColInLine = value.replace(/\s+/g,' ').trim().split(' ');
 
@@ -88,16 +88,14 @@ function populateTable() {
 
         $('#tablediv').html(tableHTMLUpperHalf+tableContent+tableHTMLBottomHalf);
 	    populateInfoBar();
-	    deleterow("logtable");
+	    deleteFirstRow("logtable");
 	    $('#logtable').DataTable();
     });
 };
 
-function deleterow(tableID) {
+function deleteFirstRow(tableID) {
     var table = document.getElementById(tableID);
-    var rowCount = table.rows.length;
-
-    table.deleteRow(rowCount -1);
+    table.deleteRow(1);
 }
 
 function getNotWhitelistedIPs(ips) {
