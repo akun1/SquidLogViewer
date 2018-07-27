@@ -5,6 +5,7 @@ SquidStuff.TableOfLogs = [];
 
 var relativePathToLogFile = "squid_stuff/squid_access.log";
 var IPWhiteList = ["128.107.241.168","128.107.241.167","47.187.198.151"];
+var publicLocationAPIKey = 'b95dfbf3cf9cb7a8bac9aed6c7abbfbb';
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -49,18 +50,12 @@ function populateTable() {
 						</table>
 					</div>`;
 
-    $.get(relativePathToLogFile, function( data ) {
-
+    $.get(relativePathToLogFile, function(data) {
     	SquidStuff.allRawLogTextLineByLine = data.split('\n').reverse();
-
 	    $.each(SquidStuff.allRawLogTextLineByLine, function(key,value) {
-
 	        tableContent += `<tr><th scope="row">`+ key +`</th>`;
-
 	    	var eachColInLine = value.replace(/\s+/g,' ').trim().split(' ');
-
 	    	$.each(eachColInLine, function(key, value) {
-
 	    		if(typeof SquidStuff.TableOfLogs[key] === 'undefined') {
 				    SquidStuff.TableOfLogs.push([value]);
 				}
@@ -73,14 +68,14 @@ function populateTable() {
 	    		}
 	    		else if(key == 2) {
 	    			if(IPWhiteList.includes(value)) {
-	    				tableContent += `<td>`+ value +`<span class="badge badge-success">Whitelisted</span></td>`;	
+	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-success">Whitelisted</span></td>`;
 	    			}
 	    			else {
-	    				tableContent += `<td>`+ value +`<span class="badge badge-danger">Unknown</span></td>`;	
+	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-danger">Unknown</span></td>`;
 	    			}
 	    		}
 	    		else {
-	    			tableContent += `<td>`+ value +`</td>`;
+	    			tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a></td>`;
 	    		}
 	    	});
 	    	tableContent += `</tr>`;
@@ -92,6 +87,21 @@ function populateTable() {
 	    $('#logtable').DataTable();
     });
 };
+
+function getIPInfo(ip) {
+	$.ajax({
+	    url: 'http://api.ipstack.com/' + ip + '?access_key=' + publicLocationAPIKey,   
+	    dataType: 'jsonp',
+	    success: function(json) {
+	        return JSON.stringify(json);   
+	    }
+	});
+}
+
+function populateIPInfoPopup(ip) {
+	alert(getIPInfo(ip));
+	//$('#main-content-area').append(getIPInfo(ip));
+}
 
 function deleteFirstRow(tableID) {
     var table = document.getElementById(tableID);
@@ -111,6 +121,7 @@ function getNotWhitelistedIPs(ips) {
 function getUniqueIPs() {
 	return [...new Set(SquidStuff.TableOfLogs[2])];
 }
+
 function getTotalNumOfLogs() {
 	return SquidStuff.TableOfLogs[0].length;
 }
