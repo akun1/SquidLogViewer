@@ -101,6 +101,7 @@ function getIPDetails(ip)
 
 function populateIPInfoPopup(ip) {
 	//$('#main-content-area').append(getIPDetails(ip));
+	var ipDetailsJSON = JSON.parse(getIPDetails(ip));
 	var modalHeight = $('#ipmap').height();
 	var mq = window.matchMedia( "(max-width: 576px)" );
 	if (mq.matches) {
@@ -112,14 +113,14 @@ function populateIPInfoPopup(ip) {
 
 	var data = [{
 	  type:'scattermapbox',
-	  lat:['45.5017'],
-	  lon:['-73.5673'],
+	  lat:[ipDetailsJSON.latitude],
+	  lon:[ipDetailsJSON.longitude],
 	  mode:'markers',
 	  marker: {
 	    size:5,
 	    color: 'red'
 	  },
-	  text:['Montreal']
+	  text:[ipDetailsJSON.ip]
 	}]
 
 	layout = {

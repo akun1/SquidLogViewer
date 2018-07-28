@@ -24,8 +24,26 @@ body, html {
 	padding: 0;
 }
 
+.modal-header, .modal-footer, .modal-dialog, .modal-content, .modal-body {
+	background-color: #191A1A;
+	border:	none;
+}
+
+.modal-dismiss-btn {
+	text-decoration: none;
+	border: none;
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+	background-color: #191A1A;
+	color: #343332;
+	outline: none;
+}
+modal-dismiss-btn:hover {
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 1);
+}
+
 #ipmap {
-	
+
 }
 
 input {
