@@ -128,6 +128,91 @@ function getTotalNumOfLogs() {
 window.onload = function() {
 	populateTable();
 
-	var ratData = [400, 900, 300, 600];
+	/*var data = [{
+    type: 'scattergeo',
+    lon: [100, 200],
+    lat: [0, 0],
+    mode: 'markers',
+    marker: {
+        size: [20, 20],
+        color: [10, 20],
+        cmin: 0,
+        cmax: 50,
+        colorscale: 'Greens',
+        line: {
+            color: 'black',
+        }
+    },
+    name: 'IP Location'
+}];
+
+var layout = {
+	'autosize': true,
+  	'margin': {
+	    'l': 0,
+	    'r': 0,
+	    'b': 0,
+	    't': 0,
+	    'pad': 0
+  	},
+  	'paper_bgcolor': '#fff',
+  	'plot_bgcolor': '#c7c7c7',
+    'geo': {
+    		'showframe': false,
+            'showcoastlines': false,
+    		'projection':{
+                  'type': 'robinson'
+              },
+            'scope': 'world',
+            'resolution': 50,
+            'showrivers': false,
+            'showlakes': true,
+            'lakecolor': '#fff',
+            'showland': true,
+            'landcolor': 'gray',
+            'countrycolor': '#d3d3d3',
+            'countrywidth': 0.5,
+            'subunitcolor': '#d3d3d3'
+        }
+	};*/
+
+	var data = [{
+	  type:'scattermapbox',
+	  lat:['45.5017'],
+	  lon:['-73.5673'],
+	  mode:'markers',
+	  marker: {
+	    size:5,
+	    color: 'red'
+	  },
+	  text:['Montreal']
+	}]
+
+	layout = {
+      mapbox: {
+        center: {
+          lat: 38.03697222,
+          lon: -90.70916722
+        },
+        style: 'dark',
+        zoom: 0
+      },
+      margin: {
+        r: 0,
+        t: 0,
+        b: 0,
+        l: 0,
+        pad: 0
+      },
+      paper_bgcolor: '#191A1A',
+      plot_bgcolor: '#191A1A',
+      showlegend: false
+   };
+
+	Plotly.setPlotConfig({
+	  mapboxAccessToken: 'pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A'
+	})
+
+	Plotly.newPlot('myDiv', data, layout);
 	
 };
