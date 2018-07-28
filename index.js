@@ -127,4 +127,7 @@ function getTotalNumOfLogs() {
 
 window.onload = function() {
 	populateTable();
+
+	var ratData = [400, 900, 300, 600];
+	
 };
