@@ -71,11 +71,11 @@ function populateTable() {
 	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-success">Whitelisted</span></td>`;
 	    			}
 	    			else {
-	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-danger">Unknown</span></td>`;
+	    				tableContent += `<td>`+ value +` <span class="badge badge-danger">Unknown</span></td>`;
 	    			}
 	    		}
 	    		else {
-	    			tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a></td>`;
+	    			tableContent += `<td>`+ value +` </td>`;
 	    		}
 	    	});
 	    	tableContent += `</tr>`;
@@ -88,19 +88,18 @@ function populateTable() {
     });
 };
 
-function getIPInfo(ip) {
-	$.ajax({
-	    url: 'http://api.ipstack.com/' + ip + '?access_key=' + publicLocationAPIKey,   
-	    dataType: 'jsonp',
-	    success: function(json) {
-	        return JSON.stringify(json);   
-	    }
-	});
+
+function getIPDetails(ip)
+{
+	var url = 'http://api.ipstack.com/' + ip + '?access_key=' + publicLocationAPIKey; 
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
 }
 
 function populateIPInfoPopup(ip) {
-	alert(getIPInfo(ip));
-	//$('#main-content-area').append(getIPInfo(ip));
+	$('#main-content-area').append(getIPDetails(ip));
 }
 
 function deleteFirstRow(tableID) {
