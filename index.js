@@ -6,6 +6,7 @@ SquidStuff.TableOfLogs = [];
 var relativePathToLogFile = "squid_stuff/squid_access.log";
 var IPWhiteList = ["128.107.241.168","128.107.241.167","47.187.198.151"];
 var publicLocationAPIKey = 'b95dfbf3cf9cb7a8bac9aed6c7abbfbb';
+var publicMapBoxAPIKey = 'pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A';
 
 function timeConverter(UNIX_timestamp){
   var a = new Date(UNIX_timestamp * 1000);
@@ -99,7 +100,52 @@ function getIPDetails(ip)
 }
 
 function populateIPInfoPopup(ip) {
-	$('#main-content-area').append(getIPDetails(ip));
+	//$('#main-content-area').append(getIPDetails(ip));
+	var modalHeight = $('#main-content-area').height();
+	var modalWidth = $('#main-content-area').width();
+
+	alert(modalWidth);
+	var data = [{
+	  type:'scattermapbox',
+	  lat:['45.5017'],
+	  lon:['-73.5673'],
+	  mode:'markers',
+	  marker: {
+	    size:5,
+	    color: 'red'
+	  },
+	  text:['Montreal']
+	}]
+
+	layout = {
+	  autosize: false,
+	  width: modalWidth,
+	  height: modalHeight,
+      mapbox: {
+        center: {
+          lat: 38.03697222,
+          lon: -90.70916722
+        },
+        style: 'dark',
+        zoom: 0
+      },
+      margin: {
+        r: 0,
+        t: 0,
+        b: 0,
+        l: 0,
+        pad: 0
+      },
+      paper_bgcolor: '#191A1A',
+      plot_bgcolor: '#191A1A',
+      showlegend: false
+   };
+
+	Plotly.setPlotConfig({
+	  mapboxAccessToken: publicMapBoxAPIKey
+	})
+
+	Plotly.newPlot('main-content-area', data, layout);
 }
 
 function deleteFirstRow(tableID) {
@@ -144,16 +190,16 @@ window.onload = function() {
         }
     },
     name: 'IP Location'
-}];
+	}];
 
-var layout = {
-	'autosize': true,
-  	'margin': {
-	    'l': 0,
-	    'r': 0,
-	    'b': 0,
-	    't': 0,
-	    'pad': 0
+	var layout = {
+		'autosize': true,
+	  	'margin': {
+		    'l': 0,
+		    'r': 0,
+		    'b': 0,
+		    't': 0,
+		    'pad': 0
   	},
   	'paper_bgcolor': '#fff',
   	'plot_bgcolor': '#c7c7c7',
@@ -175,44 +221,5 @@ var layout = {
             'subunitcolor': '#d3d3d3'
         }
 	};*/
-
-	var data = [{
-	  type:'scattermapbox',
-	  lat:['45.5017'],
-	  lon:['-73.5673'],
-	  mode:'markers',
-	  marker: {
-	    size:5,
-	    color: 'red'
-	  },
-	  text:['Montreal']
-	}]
-
-	layout = {
-      mapbox: {
-        center: {
-          lat: 38.03697222,
-          lon: -90.70916722
-        },
-        style: 'dark',
-        zoom: 0
-      },
-      margin: {
-        r: 0,
-        t: 0,
-        b: 0,
-        l: 0,
-        pad: 0
-      },
-      paper_bgcolor: '#191A1A',
-      plot_bgcolor: '#191A1A',
-      showlegend: false
-   };
-
-	Plotly.setPlotConfig({
-	  mapboxAccessToken: 'pk.eyJ1IjoiY2hyaWRkeXAiLCJhIjoiY2lxMnVvdm5iMDA4dnhsbTQ5aHJzcGs0MyJ9.X9o_rzNLNesDxdra4neC_A'
-	})
-
-	Plotly.newPlot('myDiv', data, layout);
 	
 };
