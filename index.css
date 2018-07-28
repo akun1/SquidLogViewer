@@ -11,17 +11,24 @@ body, html {
 	background-color: rgba(0, 0, 0, 0.01)
 }
 
+.back-to-top {
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 10px;
+    display: none;
+}
+
 input {
 	border-radius: 5px;
-	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
 	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
 }
 
 input:hover {
-	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
 }
-
-
 
 #logtable_wrapper {
 	padding-top: 1rem;
@@ -31,7 +38,7 @@ input:hover {
 }
 
 .navbar {
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
     background-color: white;
     border: none;
 }
@@ -67,8 +74,9 @@ thead {
   	margin-right: auto;
   	margin-bottom: 25vh;
     float: left;
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
    	background-color: white;
+   	border: none;
 }
 
 .info-bar {
@@ -78,11 +86,12 @@ thead {
 	width: 97.5vw;
 	overflow-y: scroll;
     border-radius: 5px;
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
     display: flex;
 	align-items: center;
 	margin-left: auto;
 	margin-right: auto;
+	border: none;
 }
 
 @media (max-width: 576px) {
@@ -98,6 +107,7 @@ thead {
 	    float: left;
 	    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
 	    background-color: white;
+	    border: none;
 	}
 	.info-bar {
 		background-color: white;
@@ -107,6 +117,7 @@ thead {
 		overflow-y: scroll;
 	    border-radius: 5px;
 	    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+	    border: none;
 	   	display: flex;
   		align-items: center;
   		margin-left: auto;

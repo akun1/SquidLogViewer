@@ -71,7 +71,7 @@ function populateTable() {
 	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-success">Whitelisted</span></td>`;
 	    			}
 	    			else {
-	    				tableContent += `<td>`+ value +` <span class="badge badge-danger">Unknown</span></td>`;
+	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-danger">Unknown</span></td>`;
 	    			}
 	    		}
 	    		else {
