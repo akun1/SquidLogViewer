@@ -101,10 +101,15 @@ function getIPDetails(ip)
 
 function populateIPInfoPopup(ip) {
 	//$('#main-content-area').append(getIPDetails(ip));
-	var modalHeight = $('#main-content-area').height();
-	var modalWidth = $('#main-content-area').width();
+	var modalHeight = $('#ipmap').height();
+	var mq = window.matchMedia( "(max-width: 576px)" );
+	if (mq.matches) {
+	    var modalWidth = 300;
+	}
+	else {
+	    var modalWidth = 900;
+	}
 
-	alert(modalWidth);
 	var data = [{
 	  type:'scattermapbox',
 	  lat:['45.5017'],
@@ -145,7 +150,7 @@ function populateIPInfoPopup(ip) {
 	  mapboxAccessToken: publicMapBoxAPIKey
 	})
 
-	Plotly.newPlot('main-content-area', data, layout);
+	Plotly.newPlot('ipmap', data, layout);
 }
 
 function deleteFirstRow(tableID) {

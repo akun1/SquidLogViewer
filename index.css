@@ -20,8 +20,12 @@ body, html {
     display: none;
 }
 
-#main-content-area, .modal-body {
+#ipmap, .modal-body {
 	padding: 0;
+}
+
+#ipmap {
+	
 }
 
 input {
@@ -140,7 +144,7 @@ thead {
 	}
 
 	.modal-dialog {
-	    width: px;
+	    width: 300px;
 	    margin: 30px auto;
-  	}
+  }
 }
