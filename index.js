@@ -180,11 +180,11 @@ function populateIPInfoPopup(logLineString) {
 
 	Plotly.newPlot('ipmap', data, layout);
 
-	$('#ipMapInfoCardTitle').html(SquidStuff.ipDetailsJSON.ip + ' Specifications' + '<span style="color: #3366cc;"> // ' + timeStamp + '</span>');
+	$('#ipMapInfoCardTitle').html('<span style="color: black;"> ' + SquidStuff.ipDetailsJSON.ip + ' </span> <span style="color: #3366cc;"> Logged @ ' + timeStamp + '</span>');
 	
 	var cardInfoHTML = `<div class="container-fluid">
 		        					<div class="row">
-		        						<h1>Location</h1>
+		        						<h3>Location</h3>
 		        						<ul>
 		        							<li>`+ fetchIpProperty('city') +`</li>
 		        							<li>`+ fetchIpProperty('region_name') +`</li>
@@ -194,7 +194,7 @@ function populateIPInfoPopup(logLineString) {
 		        						</ul>
 		        					</div>
 		        					<div class="row">
-		        						<h1>Connection Info</h1>
+		        						<h3>Connection Info</h3>
 		        						<ul>
 		        							<li>`+ fetchIpProperty('type') +`</li>
 		        							<li>`+ fetchIpProperty('asn') +`</li>
@@ -202,7 +202,7 @@ function populateIPInfoPopup(logLineString) {
 		        						</ul>
 		        					</div>
 		        					<div class="row">
-		        						<h1>Security Checks</h1>
+		        						<h3>Security Checks</h3>
 		        						<ul>
 		        							<li>`+ fetchIpProperty('is_proxy') +`</li>
 		        							<li>`+ fetchIpProperty('proxy_type') +`</li>
