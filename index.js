@@ -87,8 +87,7 @@ function populateTable() {
 	    deleteFirstRow("logtable");
 	    $('#logtable').DataTable({
 	        "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
-	        "pagingType": "full_numbers",
-	        "fixedHeader": true
+	        "pagingType": "full_numbers"
     	});
     });
 };
