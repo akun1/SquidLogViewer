@@ -21,12 +21,16 @@ body, html {
 }
 
 #ipMapInfoCard {
+	color: #191A1A;
+	overflow-y: scroll;
 	position: absolute;
-	right: 0;
-	top: 0;
-	height: 100%;
+	right: 5%;
+	top: 10%;
+	height: 80%;
 	width: 40%;
-	background-color: white;
+	border-radius: 4px;
+	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
+	background-color: rgba(255, 255, 255, 0.90);
 }
 
 #ipmap, .modal-body {
@@ -34,7 +38,7 @@ body, html {
 }
 
 .modal-header, .modal-footer, .modal-dialog, .modal-content, .modal-body {
-	background-color: #191A1A;
+	background-color: white;
 	border:	none;
 }
 
@@ -45,10 +49,8 @@ body, html {
 .modal-dismiss-btn {
 	text-decoration: none;
 	border: none;
-	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
-	background-color: #191A1A;
-	color: #343332;
+	background-color: white;
+	color: #191A1A;
 	outline: none;
 }
 modal-dismiss-btn:hover {
@@ -56,7 +58,6 @@ modal-dismiss-btn:hover {
 }
 
 #ipmap {
-
 }
 
 input {
@@ -186,13 +187,15 @@ thead {
 	    width: 300px;
 	    margin: 30px auto;
   }
-
-  #ipMapInfoCard {
+	#ipMapInfoCard {
+		overflow-y: scroll;
 		position: absolute;
-		left: 0;
-		top: 80%;
+		right: 5%;
+		top: 50%;
 		height: 50%;
-		width: 100%;
+		width: 90%;
+		border-radius: 7px;
+		box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
 		background-color: white;
 	}
 }

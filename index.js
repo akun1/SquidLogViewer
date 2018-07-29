@@ -22,7 +22,7 @@ function timeConverter(UNIX_timestamp){
 }
 
 function populateInfoBar() {
-	$('#IPInfo').append("Unique/Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
+	$('#IPInfo').append("Non-Whitelist IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
 	$('#LogInfo').append("Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span>");
 }
 
@@ -126,7 +126,7 @@ function populateIPInfoPopup(logLineString) {
 	var logLineArr = logLineString.split(',');
 	var ip = logLineArr[2];
 	var timeStamp = timeConverter(logLineArr[0]);
-	var ipDetailsJSON = JSON.parse(getIPDetails(ip));
+	SquidStuff.ipDetailsJSON = JSON.parse(getIPDetails(ip));
 	var modalHeight = $('#ipmap').height();
 	var mq = window.matchMedia( "(max-width: 576px)" );
 	if (mq.matches) {
@@ -140,14 +140,14 @@ function populateIPInfoPopup(logLineString) {
 
 	var data = [{
 	  type:'scattermapbox',
-	  lat:[ipDetailsJSON.latitude],
-	  lon:[ipDetailsJSON.longitude],
+	  lat:[SquidStuff.ipDetailsJSON.latitude],
+	  lon:[SquidStuff.ipDetailsJSON.longitude],
 	  mode:'markers',
 	  marker: {
 	    size:10,
-	    color: 'red'
+	    color: '#3366cc'
 	  },
-	  text:[ipDetailsJSON.country_name]
+	  text:[SquidStuff.ipDetailsJSON.country_name]
 	}]
 
 	layout = {
@@ -156,10 +156,10 @@ function populateIPInfoPopup(logLineString) {
 	  height: modalHeight,
       mapbox: {
         center: {
-          lat: ipDetailsJSON.latitude,
-          lon: ipDetailsJSON.longitude + longOffset
+          lat: SquidStuff.ipDetailsJSON.latitude,
+          lon: SquidStuff.ipDetailsJSON.longitude + longOffset
         },
-        style: 'dark',
+        style: 'light',
         zoom: 5
       },
       margin: {
@@ -180,9 +180,52 @@ function populateIPInfoPopup(logLineString) {
 
 	Plotly.newPlot('ipmap', data, layout);
 
-	$('#ipMapInfoCardTitle').html(ipDetailsJSON.ip + ' Specifications' + '<span style="color: red;"> // ' + timeStamp + '</span>');
+	$('#ipMapInfoCardTitle').html(SquidStuff.ipDetailsJSON.ip + ' Specifications' + '<span style="color: #3366cc;"> // ' + timeStamp + '</span>');
 	
-	$('#ipMapInfoCard').html("").append('<div>'+ipDetailsJSON+'</div>');
+	var cardInfoHTML = `<div class="container-fluid">
+		        					<div class="row">
+		        						<h1>Location</h1>
+		        						<ul>
+		        							<li>`+ fetchIpProperty('city') +`</li>
+		        							<li>`+ fetchIpProperty('region_name') +`</li>
+		        							<li>`+ fetchIpProperty('zip') +`</li>
+		        							<li>`+ fetchIpProperty('country_name') +`</li>
+
+		        						</ul>
+		        					</div>
+		        					<div class="row">
+		        						<h1>Connection Info</h1>
+		        						<ul>
+		        							<li>`+ fetchIpProperty('type') +`</li>
+		        							<li>`+ fetchIpProperty('asn') +`</li>
+		        							<li>`+ fetchIpProperty('isp') +`</li>
+		        						</ul>
+		        					</div>
+		        					<div class="row">
+		        						<h1>Security Checks</h1>
+		        						<ul>
+		        							<li>`+ fetchIpProperty('is_proxy') +`</li>
+		        							<li>`+ fetchIpProperty('proxy_type') +`</li>
+		        							<li>`+ fetchIpProperty('is_crawler') +`</li>
+		        							<li>`+ fetchIpProperty('crawler_name') +`</li>
+		        							<li>`+ fetchIpProperty('crawler_type') +`</li>
+		        							<li>`+ fetchIpProperty('is_tor') +`</li>
+		        							<li>`+ fetchIpProperty('threat_level') +`</li>
+		        							<li>`+ fetchIpProperty('threat_types') +`</li>
+		        						</ul>
+		        					</div>
+		        				</div>`;
+
+	$('#ipMapInfoCard').html("").append(cardInfoHTML);
+}
+
+function fetchIpProperty(property) {
+	if(SquidStuff.ipDetailsJSON.hasOwnProperty(property)) {
+		return SquidStuff.ipDetailsJSON[property];
+	}
+	else {
+		return "N/A"
+	}
 }
 
 function deleteFirstRow(tableID) {
