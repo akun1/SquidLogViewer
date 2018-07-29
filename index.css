@@ -11,8 +11,6 @@ body, html {
 	background-color: rgba(0, 0, 0, 0.01)
 }
 
-
-
 .back-to-top {
     cursor: pointer;
     position: absolute;
@@ -22,6 +20,15 @@ body, html {
     display: none;
 }
 
+#ipMapInfoCard {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 40%;
+	background-color: white;
+}
+
 #ipmap, .modal-body {
 	padding: 0;
 }
@@ -29,6 +36,10 @@ body, html {
 .modal-header, .modal-footer, .modal-dialog, .modal-content, .modal-body {
 	background-color: #191A1A;
 	border:	none;
+}
+
+.modal-title {
+	color: white;
 }
 
 .modal-dismiss-btn {
@@ -58,11 +69,8 @@ input:hover {
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.25);
 }
 
-#logtable_wrapper {
-	padding-top: 2rem;
-	padding-bottom: 2rem;
-	padding-left: 2rem;
-	padding-right: 5rem;
+.dataTables_wrapper {
+	padding: 2rem;
 }
 
 .navbar {
@@ -128,6 +136,7 @@ thead {
 }
 
 @media (min-width: 576px) {
+
   .modal-dialog {
     width: 900px;
     margin: 30px auto;
@@ -135,6 +144,10 @@ thead {
 }
 
 @media (max-width: 576px) {
+
+	*, h4 {
+		font-size: 9px;
+	}
 
 	.table-responsive {
 		height: 75vh;
@@ -173,4 +186,13 @@ thead {
 	    width: 300px;
 	    margin: 30px auto;
   }
+
+  #ipMapInfoCard {
+		position: absolute;
+		left: 0;
+		top: 80%;
+		height: 50%;
+		width: 100%;
+		background-color: white;
+	}
 }

@@ -22,7 +22,7 @@ function timeConverter(UNIX_timestamp){
 }
 
 function populateInfoBar() {
-	$('#IPInfo').append("Unique & Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
+	$('#IPInfo').append("Unique/Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
 	$('#LogInfo').append("Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span>");
 }
 
@@ -69,10 +69,10 @@ function populateTable() {
 	    		}
 	    		else if(key == 2) {
 	    			if(IPWhiteList.includes(value)) {
-	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-success">Whitelisted</span></td>`;
+	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ eachColInLine +`\')">`+ value +`</a> <span class="badge badge-success">Whitelisted</span></td>`;
 	    			}
 	    			else {
-	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ value +`\')">`+ value +`</a> <span class="badge badge-danger">Unknown</span></td>`;
+	    				tableContent += `<td><a data-toggle="modal" data-target="#exampleModalCenter" onClick="populateIPInfoPopup(\'`+ eachColInLine +`\')">`+ value +`</a> <span class="badge badge-danger">Unknown</span></td>`;
 	    			}
 	    		}
 	    		else {
@@ -85,9 +85,29 @@ function populateTable() {
         $('#tablediv').html(tableHTMLUpperHalf+tableContent+tableHTMLBottomHalf);
 	    populateInfoBar();
 	    deleteFirstRow("logtable");
+
+	    var mq = window.matchMedia( "(max-height: 575px)" );
+		if (mq.matches) {
+		    var scrollY = "30vh";
+		}
+		var mq2 = window.matchMedia( "(max-height: 820px)" );
+		if (mq2.matches) {
+		    var scrollY = "50vh";
+		}
+		var mq3 = window.matchMedia( "(min-height: 1000px)" );
+		if (mq3.matches) {
+		    var scrollY = "60vh";
+		}
+
 	    $('#logtable').DataTable({
 	        "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
-	        "pagingType": "full_numbers"
+	        "pagingType": "full_numbers",
+	        scrollY:        scrollY,
+	        scrollX:        true,
+	        scrollCollapse: true,
+	        fixedColumns:   {
+	            heightMatch: 'auto'
+	        }
     	});
     });
 };
@@ -102,16 +122,20 @@ function getIPDetails(ip)
     return xmlHttp.responseText;
 }
 
-function populateIPInfoPopup(ip) {
-	//$('#main-content-area').append(getIPDetails(ip));
+function populateIPInfoPopup(logLineString) {
+	var logLineArr = logLineString.split(',');
+	var ip = logLineArr[2];
+	var timeStamp = timeConverter(logLineArr[0]);
 	var ipDetailsJSON = JSON.parse(getIPDetails(ip));
 	var modalHeight = $('#ipmap').height();
 	var mq = window.matchMedia( "(max-width: 576px)" );
 	if (mq.matches) {
 	    var modalWidth = 300;
+	    var longOffset = 0;
 	}
 	else {
 	    var modalWidth = 900;
+	    var longOffset = 4;
 	}
 
 	var data = [{
@@ -120,10 +144,10 @@ function populateIPInfoPopup(ip) {
 	  lon:[ipDetailsJSON.longitude],
 	  mode:'markers',
 	  marker: {
-	    size:5,
+	    size:10,
 	    color: 'red'
 	  },
-	  text:[ipDetailsJSON.ip]
+	  text:[ipDetailsJSON.country_name]
 	}]
 
 	layout = {
@@ -132,11 +156,11 @@ function populateIPInfoPopup(ip) {
 	  height: modalHeight,
       mapbox: {
         center: {
-          lat: 38.03697222,
-          lon: -90.70916722
+          lat: ipDetailsJSON.latitude,
+          lon: ipDetailsJSON.longitude + longOffset
         },
         style: 'dark',
-        zoom: 0
+        zoom: 5
       },
       margin: {
         r: 0,
@@ -155,6 +179,10 @@ function populateIPInfoPopup(ip) {
 	})
 
 	Plotly.newPlot('ipmap', data, layout);
+
+	$('#ipMapInfoCardTitle').html(ipDetailsJSON.ip + ' Specifications' + '<span style="color: red;"> // ' + timeStamp + '</span>');
+	
+	$('#ipMapInfoCard').html("").append('<div>'+ipDetailsJSON+'</div>');
 }
 
 function deleteFirstRow(tableID) {
