@@ -180,38 +180,38 @@ function populateIPInfoPopup(logLineString) {
 
 	Plotly.newPlot('ipmap', data, layout);
 
-	$('#ipMapInfoCardTitle').html('<span style="color: black;"> ' + SquidStuff.ipDetailsJSON.ip + ' </span> <span style="color: #3366cc;"> Logged @ ' + timeStamp + '</span>');
+	$('#ipMapInfoCardTitle').html('<span style="color: black;"> ' + SquidStuff.ipDetailsJSON.ip + ' </span> <span style="color: #3366cc;"> @ ' + timeStamp + '</span>');
 	
 	var cardInfoHTML = `<div class="container-fluid">
 		        					<div class="row">
 		        						<h3>Location</h3>
 		        						<ul>
-		        							<li>`+ fetchIpProperty('city') +`</li>
-		        							<li>`+ fetchIpProperty('region_name') +`</li>
-		        							<li>`+ fetchIpProperty('zip') +`</li>
-		        							<li>`+ fetchIpProperty('country_name') +`</li>
+		        							<li> City: `+ fetchIpProperty('city') +`</li>
+		        							<li> Region: `+ fetchIpProperty('region_name') +`</li>
+		        							<li> ZIP Code: `+ fetchIpProperty('zip') +`</li>
+		        							<li> Country: `+ fetchIpProperty('country_name') +`</li>
 
 		        						</ul>
 		        					</div>
+		        					<hr>
 		        					<div class="row">
 		        						<h3>Connection Info</h3>
 		        						<ul>
-		        							<li>`+ fetchIpProperty('type') +`</li>
-		        							<li>`+ fetchIpProperty('asn') +`</li>
-		        							<li>`+ fetchIpProperty('isp') +`</li>
+		        							<li> IP Type: `+ fetchIpProperty('type') +`</li>
+		        							<li> ASN Code: `+ fetchIpProperty('asn') +`</li>
+		        							<li> ISP: `+ fetchIpProperty('isp') +`</li>
 		        						</ul>
 		        					</div>
+		        					<hr>
 		        					<div class="row">
 		        						<h3>Security Checks</h3>
 		        						<ul>
-		        							<li>`+ fetchIpProperty('is_proxy') +`</li>
-		        							<li>`+ fetchIpProperty('proxy_type') +`</li>
-		        							<li>`+ fetchIpProperty('is_crawler') +`</li>
-		        							<li>`+ fetchIpProperty('crawler_name') +`</li>
-		        							<li>`+ fetchIpProperty('crawler_type') +`</li>
-		        							<li>`+ fetchIpProperty('is_tor') +`</li>
-		        							<li>`+ fetchIpProperty('threat_level') +`</li>
-		        							<li>`+ fetchIpProperty('threat_types') +`</li>
+		        							<li> Proxy?: `+ fetchIpProperty('is_proxy') +`</li>
+		        							<li> Proxy Type: `+ fetchIpProperty('proxy_type') +`</li>
+		        							<li> Crawler?: `+ fetchIpProperty('is_crawler') +`</li>
+		        							<li> Crawler Name: `+ fetchIpProperty('crawler_name') +`</li>
+		        							<li> Crawler Type: `+ fetchIpProperty('crawler_type') +`</li>
+		        							<li> Tor?`+ fetchIpProperty('is_tor') +`</li>
 		        						</ul>
 		        					</div>
 		        				</div>`;
