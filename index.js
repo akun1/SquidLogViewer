@@ -85,7 +85,11 @@ function populateTable() {
         $('#tablediv').html(tableHTMLUpperHalf+tableContent+tableHTMLBottomHalf);
 	    populateInfoBar();
 	    deleteFirstRow("logtable");
-	    $('#logtable').DataTable();
+	    $('#logtable').DataTable({
+	        "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
+	        "pagingType": "full_numbers",
+	        "fixedHeader": true
+    	});
     });
 };
 
@@ -177,7 +181,15 @@ function getTotalNumOfLogs() {
 	return SquidStuff.TableOfLogs[0].length;
 }
 
+function setDownloadLogsBtnAttrs() {
+	var date = new Date();
+	document.getElementById("downloadLogsBtn").setAttribute("download","squid_access_logs_at_" + date.toString().replace(/ /g,"_") + ".log");
+	document.getElementById("downloadLogsBtn").setAttribute("href",relativePathToLogFile);
+}
+
 window.onload = function() {
+	setDownloadLogsBtnAttrs();
+	$('[data-toggle="tooltip"]').tooltip(); 
 	populateTable();
 
 	/*var data = [{

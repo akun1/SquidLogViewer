@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 
-		 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+		<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -11,6 +11,9 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="index.css">
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedheader/3.1.2/css/fixedHeader.dataTables.min.css">
+
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
@@ -30,7 +33,10 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav navbar-right">
-			        <li onClick="window.location.href=window.location.href" ><a href=""><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></a></li>
+			        <li onClick="window.location.href=window.location.href" ><a href=""><span class="glyphicon glyphicon-refresh" data-toggle="tooltip" title="Refresh Logs" data-placement="auto" aria-hidden="true"></span></a></li>
+			        <li>
+			        	<a id="downloadLogsBtn"><span class="glyphicon glyphicon-floppy-save" data-toggle="tooltip" title="Download Logs" data-placement="auto" aria-hidden="true"></span></a>
+			        </li>
 			      </ul>
 			    </div>
 			  </div>
