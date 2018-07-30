@@ -28,7 +28,7 @@ table * {
 	width: 40%;
 	border-radius: 4px;
 	box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
-	background-color: rgba(255, 255, 255, 0.90);
+	background-color: rgba(186, 222, 210, 0.9);
 	padding-top: 1rem;
 	padding-bottom: 3rem; 
 	padding-left: 3rem;
@@ -50,7 +50,7 @@ table * {
 }
 
 .modal-header, .modal-footer, .modal-dialog, .modal-content, .modal-body {
-	background-color: white;
+	background-color: #9cc0b4;
 	border:	none;
 }
 
@@ -172,23 +172,6 @@ thead {
   	background-color: white;
 }
 
-.info-bar .col-sm-2 .dark {
-	border: none;
-	height: 80%;
-	margin-right: 0.75rem;
-	margin-left: 0.75rem;
-	text-align: center;
-	align-content: center;
-	vertical-align: center;
-	display: flex;
-  	flex-direction: column;
-  	justify-content: center;
-  	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
-  	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
-  	background-color: black;
-  	border-radius: 5px;
-}
-
 @media (min-width: 576px) {
 
   .modal-dialog {
@@ -248,7 +231,7 @@ thead {
 		height: 50%;
 		width: 90%;
 		border-radius: 7px;
-		box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+		box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 		background-color: white;
 	}
 	.modal-header h4 span {

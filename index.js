@@ -146,7 +146,7 @@ function populateIPInfoPopup(logLineString) {
 	  mode:'markers',
 	  marker: {
 	    size:10,
-	    color: '#3366cc'
+	    color: '#9cc0b4'
 	  },
 	  text:[SquidStuff.ipDetailsJSON.country_name]
 	}]
@@ -181,7 +181,7 @@ function populateIPInfoPopup(logLineString) {
 
 	Plotly.newPlot('ipmap', data, layout);
 
-	$('#ipMapInfoCardTitle').html('<span style="color: black;"> ' + SquidStuff.ipDetailsJSON.ip + ' </span> <span style="color: #3366cc;"> @ ' + timeStamp + '</span>');
+	$('#ipMapInfoCardTitle').html('<span style="color: black;"> ' + SquidStuff.ipDetailsJSON.ip + ' </span> <span> @ ' + timeStamp + '</span>');
 	
 	var cardInfoHTML = `<div class="container-fluid">
 		        					<div class="row">
@@ -207,12 +207,12 @@ function populateIPInfoPopup(logLineString) {
 		        					<div class="row">
 		        						<h3>Security Checks</h3>
 		        						<ul>
-		        							<li> Proxy?: `+ fetchIpProperty('is_proxy') +`</li>
+		        							<li> Is a Proxy: `+ fetchIpProperty('is_proxy') +`</li>
 		        							<li> Proxy Type: `+ fetchIpProperty('proxy_type') +`</li>
-		        							<li> Crawler?: `+ fetchIpProperty('is_crawler') +`</li>
+		        							<li> Is a Crawler: `+ fetchIpProperty('is_crawler') +`</li>
 		        							<li> Crawler Name: `+ fetchIpProperty('crawler_name') +`</li>
 		        							<li> Crawler Type: `+ fetchIpProperty('crawler_type') +`</li>
-		        							<li> Tor?`+ fetchIpProperty('is_tor') +`</li>
+		        							<li> Is a Tor Node: `+ fetchIpProperty('is_tor') +`</li>
 		        						</ul>
 		        					</div>
 		        				</div>`;
