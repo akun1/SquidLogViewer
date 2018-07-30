@@ -13,6 +13,10 @@ body, html {
 	background-color: rgba(0, 0, 0, 0.01)
 }
 
+table * {
+	white-space: pre-line;
+}
+
 .back-to-top {
     cursor: pointer;
     position: absolute;
@@ -142,7 +146,7 @@ thead {
 }
 
 .info-bar {
-	background-color: white;
+	background-color: transparent;
 	margin-top: 6.25rem;
 	height: 8vh;
 	width: 97.5vw;
@@ -154,6 +158,7 @@ thead {
 	margin-left: auto;
 	margin-right: auto;
 	border: none;
+	white-space: nowrap;
 }
 
 @media (min-width: 576px) {

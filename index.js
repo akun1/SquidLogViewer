@@ -22,8 +22,10 @@ function timeConverter(UNIX_timestamp){
 }
 
 function populateInfoBar() {
-	$('#IPInfo').append("Non-Whitelist IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
+	$('#IPInfo').append("Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
 	$('#LogInfo').append("Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span>");
+	$('#TodaysLogInfo').append("View Today's Logs");
+	$('#ResetTable').append("Reset Logs");
 }
 
 function populateTable() {
@@ -255,6 +257,18 @@ function setDownloadLogsBtnAttrs() {
 	var date = new Date();
 	document.getElementById("downloadLogsBtn").setAttribute("download","squid_access_logs_at_" + date.toString().replace(/ /g,"_") + ".log");
 	document.getElementById("downloadLogsBtn").setAttribute("href",relativePathToLogFile);
+}
+
+function applyFilter(filter) {
+	if(filter === "$(todaysDate)") {
+		var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+		var date = new Date();
+		filter = date.getDate().toString() + " " + months[date.getMonth()] + " " + date.getFullYear().toString();
+	}
+	if(filter === "$(reset)") {
+		filter = "";
+	}
+    $('#logtable').DataTable().search(filter).draw();
 }
 
 window.onload = function() {
