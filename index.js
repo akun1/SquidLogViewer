@@ -22,9 +22,9 @@ function timeConverter(UNIX_timestamp){
 }
 
 function populateInfoBar() {
-	$('#IPInfo').append("<a onclick=\"applyFilter(\'Unknown\')\">Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span></a>");
-	$('#LogInfo').append("<a onclick=\"applyFilter(\'$(reset)\')\">Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span></a>");
-	$('#TodaysLogInfo').append("<a onclick=\"applyFilter(\'$(todaysDate)\')\">Today's Logs</span></a>");
+	$('#IPInfo').append("<a style=cursor:pointer onclick=\"applyFilter(\'Unknown\')\">Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span></a>");
+	$('#LogInfo').append("<a style=cursor:pointer onclick=\"applyFilter(\'$(reset)\')\">Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span></a>");
+	$('#TodaysLogInfo').append("<a style=cursor:pointer onclick=\"applyFilter(\'$(todaysDate)\')\">Today's Logs</span></a>");
 }
 
 function populateTable() {
@@ -270,8 +270,16 @@ function applyFilter(filter) {
     $('#logtable').DataTable().search(filter).draw();
 }
 function tableScrollToTop() {
+
 	$(".dataTables_scrollBody").animate({
 	    scrollTop: 0
+	});
+}
+
+function tableScrollToLeft() {
+
+	$(".dataTables_scrollBody").animate({
+	    scrollLeft: 0
 	});
 }
 
