@@ -2,7 +2,7 @@
 
 * {
 	border: none;
-	text-decoration: none;
+	text-decoration: none !important;
 	outline: none;
 }
 
@@ -22,7 +22,7 @@ table * {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: none;
 }
 
@@ -49,10 +49,6 @@ table * {
 	font-size: 14px;
 }
 
-#ipMapInfoCard li {
-	text-decoration: none;
-}
-
 #ipMapInfoCard hr {
 	border-color: darkgray;
 }
@@ -71,7 +67,6 @@ table * {
 }
 
 .modal-dismiss-btn {
-	text-decoration: none;
 	border: none;
 	background-color: white;
 	color: #191A1A;
@@ -100,7 +95,7 @@ input:hover {
 
 .navbar {
     box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
-    background-color: white;
+    background-color: #398270;;
     border: none;
 }
 
@@ -110,8 +105,12 @@ input:hover {
 	outline: none;
 }
 
+.navbar-brand {
+	color: white !important;
+}
+
 .badge-secondary {
-	background-color: teal;
+	background-color: #398270;
 }
 
 .badge-danger {
@@ -123,11 +122,11 @@ input:hover {
 }
 
 .badge-info {
-	background-color: #3366cc;
+	background-color: #398270;
 }
 
 thead {
-	background-color: rgba(0, 0, 0, 0.2);
+	background-color: #9cc0b4;
 }
 
 .table-responsive {
@@ -151,14 +150,51 @@ thead {
 	height: 8vh;
 	width: 97.5vw;
 	overflow-y: scroll;
-    border-radius: 5px;
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
     display: flex;
 	align-items: center;
 	margin-left: auto;
 	margin-right: auto;
 	border: none;
 	white-space: nowrap;
+}
+
+.info-bar div {
+	border: none;
+	height: 80%;
+	margin-right: 0.75rem;
+	margin-left: 0.75rem;
+	text-align: center;
+	align-content: center;
+	vertical-align: center;
+	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+  	background-color: white;
+  	border-radius: 5px;
+}
+
+.info-bar div:hover {
+  	box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.6);
+  	background-color: white;
+}
+
+.info-bar .col-sm-2 .dark {
+	border: none;
+	height: 80%;
+	margin-right: 0.75rem;
+	margin-left: 0.75rem;
+	text-align: center;
+	align-content: center;
+	vertical-align: center;
+	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+  	box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  	transition: all 0.5s cubic-bezier(.25,.8,.25,1);
+  	background-color: black;
+  	border-radius: 5px;
 }
 
 @media (min-width: 576px) {
@@ -189,19 +225,19 @@ thead {
 	    border: none;
 	}
 	.info-bar {
-		background-color: white;
+  		font-size: 9px;
+  		overflow-y: scroll;
+		background-color: transparent;
 		margin-top: 6.25rem;
 		height: 7vh;
 		width: 92.5vw;
 		overflow-y: scroll;
-	    border-radius: 5px;
-	    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
-	    border: none;
-	   	display: flex;
-  		align-items: center;
-  		margin-left: auto;
-  		margin-right: auto;
-  		font-size: 9px;
+	    display: flex;
+		align-items: center;
+		margin-left: auto;
+		margin-right: auto;
+		border: none;
+		white-space: nowrap;
 	}
 
 	.badge {

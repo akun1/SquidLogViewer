@@ -22,10 +22,9 @@ function timeConverter(UNIX_timestamp){
 }
 
 function populateInfoBar() {
-	$('#IPInfo').append("Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span>");
-	$('#LogInfo').append("Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span>");
-	$('#TodaysLogInfo').append("View Today's Logs");
-	$('#ResetTable').append("Reset Logs");
+	$('#IPInfo').append("<a onclick=\"applyFilter(\'Unknown\')\">Unknown IP's: <span class='badge badge-info'>" + getNotWhitelistedIPs(getUniqueIPs()).length + "</span></a>");
+	$('#LogInfo').append("<a onclick=\"applyFilter(\'$(reset)\')\">Total Logs: <span class='badge badge-info'>" + Number(getTotalNumOfLogs()-Number(1)) + "</span></a>");
+	$('#TodaysLogInfo').append("<a onclick=\"applyFilter(\'$(todaysDate)\')\">Today's Logs</span></a>");
 }
 
 function populateTable() {
@@ -273,7 +272,6 @@ function applyFilter(filter) {
 
 window.onload = function() {
 	setDownloadLogsBtnAttrs();
-	$('[data-toggle="tooltip"]').tooltip(); 
 	populateTable();
 
 	/*var data = [{
