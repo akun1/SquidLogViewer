@@ -6,6 +6,7 @@
 	outline: none;
 }
 
+
 td {word-wrap: break-word;}
 
 body, html {
@@ -15,15 +16,6 @@ body, html {
 
 table * {
 	white-space: pre-line;
-}
-
-.back-to-top {
-    cursor: pointer;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    border-radius: 5px;
-    display: none;
 }
 
 #ipMapInfoCard {

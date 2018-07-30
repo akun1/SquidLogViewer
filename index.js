@@ -269,6 +269,11 @@ function applyFilter(filter) {
 	}
     $('#logtable').DataTable().search(filter).draw();
 }
+function tableScrollToTop() {
+	$(".dataTables_scrollBody").animate({
+	    scrollTop: 0
+	});
+}
 
 window.onload = function() {
 	setDownloadLogsBtnAttrs();

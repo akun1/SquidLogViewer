@@ -18,11 +18,11 @@
 		<nav class="navbar navbar-default navbar-fixed-top" id=navibar>
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+			      <!--button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar" style="margin-left: 4px;"></span>
 			        <span class="icon-bar"></span> 
-			      </button>
+			      </button-->
 			      <a class="navbar-brand" href="index.html">
 		      		Squid Log Viewer
 			      </a>
@@ -34,20 +34,12 @@
 			</nav>
 			<div class="container-fluid">
 				<div class="row info-bar" style="text-decoration: none;">
-					<!--a onclick="applyFilter('Unknown')"><div class="col-sm-1" id="IPInfo"></div></a>
-					<div class="col-sm-1" id="LogInfo"></div>
-					<a onclick="applyFilter('$(todaysDate)')"><div class="col-sm-1" id="TodaysLogInfo">Todays Logs</div></a>
-					<a onclick="applyFilter('$(reset)')"><div class="col-sm-1" id="ResetTable"></div></a>
-					<div class="col-sm-1"></div>
-					<div class="col-sm-7"></div-->
-
 					<div class="col-sm-2" id="IPInfo"></div>
 					<div class="col-sm-2" id="LogInfo"></div>
 					<div class="col-sm-2" id="TodaysLogInfo"></div>
+					<div class="col-sm-2" id="ScrollToTop"><a onClick="tableScrollToTop()"><span class="glyphicon glyphicon-hand-up" data-toggle="tooltip" title="Refresh Logs" data-placement="auto" aria-hidden="true"></span></a></div>
+					<div class="col-sm-2" id=""><a onClick="window.location.href=window.location.href"><span class="glyphicon glyphicon-repeat" data-toggle="tooltip" title="Refresh Logs" data-placement="auto" aria-hidden="true"></span></a></div>
 					<div class="col-sm-2" id=""><a id="downloadLogsBtn"><span class="glyphicon glyphicon-floppy-save" data-toggle="tooltip" title="Download Logs" data-placement="auto" aria-hidden="true"></span></a></div>
-					<div class="col-sm-2" id=""><a href="" onClick="window.location.href=window.location.href"><span class="glyphicon glyphicon-refresh" data-toggle="tooltip" title="Refresh Logs" data-placement="auto" aria-hidden="true"></span></a></div>
-					<div class="col-sm-2" id="">6</div>
-
 				</div>
 			</div>
 		<div class="container-fluid">
@@ -56,8 +48,6 @@
 				</div>
 			</div>
 		</div>
-
-		<a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
 
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
