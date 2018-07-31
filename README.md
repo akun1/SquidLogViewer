@@ -2,7 +2,7 @@
 
 When using the service Squid to turn your server into a proxy, reading the logs are difficult in the terminal. Filtering through the already hard-to-see rows of log entries sucks.
 
-Use Squid Log Viewer instead! Super easy to set up, lightweight, and makes dealing with Squid web proxy logs much easier. 
+Use Squid Log Viewer instead! Super easy to set up, lightweight, and makes dealing with Squid web proxy logs much easier (it's also mobile friendly). 
 
 ## Getting Started
 
