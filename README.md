@@ -12,8 +12,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 Install these two services:
 ```
-* [Squid](http://www.squid-cache.org/) - Web proxy service used with VPS
-* [Apache](https://httpd.apache.org/) - Web server service used with VPS
+Squid - http://www.squid-cache.org/
+Apache - https://httpd.apache.org/
 ```
 
 Setting up Apache and Squid
@@ -107,9 +107,6 @@ It should look like this: http://144.202.66.17/
 ## Authors
 
 * **Akash Kundu**
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
 
 ## Acknowledgments
 
