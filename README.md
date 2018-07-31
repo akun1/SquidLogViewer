@@ -1,3 +1,4 @@
+![alt text](https://s3.amazonaws.com/publicly-available-assets/SLVLogo.png)
 # Squid Log Viewer
 
 When using the service Squid to turn your server into a proxy, reading the logs are difficult in the terminal. Filtering through the already hard-to-see rows of log entries sucks.
@@ -91,9 +92,12 @@ You need the files in this repo inside the web server directory (which directory
 
 Once these filed are on your server, you're ready to go. Navigate to the IP of your web server in your browser and you should see the Squid Log Viewer up and running.
 
-It should look like this: http://144.202.66.17/
+Live example at: http://144.202.66.17/
 
+Or refer below for a screenshot.
 ```
+
+It should look like this: 
 ![alt text](https://s3.amazonaws.com/publicly-available-assets/SLVSample.png)
 
 ## Built With
